@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{5.3 HW}
+\author{Gerald Sufleta}
+\date{December 2022}
+
+\newcommand{\OArrow}{\xrightarrow[\text{onto}]{\text{1-1}}}
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \littletaller % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+\begin{document}
+
+\maketitle
+
+\section{Problem 3}
+
+$\mathbf{Q:}$ Prove  by induction on the number of elements in the finite set B that: If $A$ is denumerable and $B$ is finite, then $A \cup B$ is denumerable.
+
+$\\ \textbf{Answer: }$ By theorem since $A$ is denumerable, then $A \cup \{x\}$ is denumerable, where $x$ is a finite element. This proves our base case.
+
+Suppose that $k \in \{0,1,2,...\}$ and every set $C$ with up to $k$ elements has the property that $A \cup C$ is denumerable. 
+
+Further suppose that $\overline{\overline{B}} = k + 1$. 
+
+Let $g:B\rightarrow\mathbb{N}_{k+1}$ be a bijection.
+
+Let $x \in B$ be the element for which $g(x) = k+1$.
+
+Let $D = B - \{x\}$. Then $\restr{g}{D} = D \rightarrow \mathbb{N}_{k}$ is a bijection. The inductive hypothesis applies because $\overline{\overline{D}} = k$, so $A \cup D$ is denumerable. 
+
+And the union of a denumerable set and a finite element is denumerable, see supra, so $A \cup D \cup \{x\} = A \cup B$ is denumerable.
+
+
+
+\section{Problem 4}
+$\mathbf{Q:}$ Complete the proof of Theorem 5.3.6 by showing that the function $h$ as defined below is one-to-one and onto $ A \cup B$. Where $f: \mathbb{N} \OArrow A$, $g: \mathbb{N} \OArrow B$, and 
+
+\begin{equation}
+h(n) = \begin{cases}
+f(\frac{n+1}{2}) & \text{if } n \text{ is odd} \\
+g(\frac{n}{2}) & \text{if } n \text{ is even}
+\end{cases}
+ \label{eq:h}
+\end{equation}
+
+$\\ \textbf{Answer: }$ We will first show that the function is a surjection. Then, we will show that $h$ is one-to-one. Finally, we will conclude that $h: \mathbb{N} \OArrow A \cup B$.
+
+At the outset, we note that while the domains of the functions $f$ and $g$ are given as the natural numbers, we may use any denumerable set as their domain while preserving the bijection; for example $f: \mathbb{O^{+}} \OArrow A$, $g: \mathbb{E^{+}} \OArrow B$, where  $\text{Dom}(g) = \mathbb{E^{+}}$, $\text{Dom}(f) = \mathbb{O^{+}}$, and $\text{Dom}(g)$ $ \cap$ $  \text{Dom}(f) = \emptyset$. 
+
+Moreover, we may understand the function $h$ as $h = f \cup g$. We may do this because $h: (\mathbb{E^{+}} \cup \mathbb{O^{+}}) = (\mathbb{N} \cup \mathbb{N}) = \mathbb{N} \rightarrow A \cup B$.
+
+Lastly, we note that since $\text{Rng}(f) = A$ and $\text{Rng}(g) = B$ where $A \cap B = \emptyset$, then $\text{Rng}(f) \cap \text{Rng}(g) = \emptyset. \\$
+
+$\underline{\text{Surjection:}}$ To show that $h$ is a surjection onto the union of $A$ and $B$ we simply map every element of $A$ to the positive odd numbers, and every element of $B$ to the positive even numbers. We can do this because there is a bijection from the positive even and odd numbers to any denumerable set, such as $A$ and $B$. And since the union of the positive even and odd numbers is the natural numbers, we have covered the whole domain of $h$.
+
+Therefore, $h$ is a surjection from the natural numbers to $A \cup B \text{.} \\$
+
+$\underline{\text{Injection:}}$ We show that an injection exists between the natural numbers and $A \cup B$. Suppose $n,m \in \mathbb{N}$. There are three cases, either $m$ and $n$ are odd, both are even, or one is odd and the other is even which we treat as a single case without loss of generality.
+
+\begin{enumerate}
+    \item \textit{n and m are both odd}: then $h(n) = f(n) = f(m) = h(m)$. Since $f$ is a bijection to the odd/natural numbers, $n = m$.
+    \item \textit{n and m are both even}: then $h(n) = g(n) = g(m) = h(m)$. Since $g$ is a bijection to the even/natural numbers, $n = m$.
+    \item \textit{n is odd and m is even}: then $h(n) = f(n) = h(m)= g(m)$,  $h(n) \in A$ and $h(m) \in B$. Since $A \cap B = \emptyset$, $h(n) \neq h(m)$. This case is impossible.
+\end{enumerate}
+
+
+Consequently, $h$ is also an injection from the natural numbers to $A \cup B$, so $h$ is a bijection from the natural numbers to the set $A \cup B$. En summa, $h: \mathbb{N} \OArrow A \cup B$.
+\section{Problem 10a}
+$\mathbf{Q:}$ If $A \subseteq B $ and $B$ is denumerable, then $A$ is denumerable
+
+$\\ \textbf{Answer: }\textit{False.}$ Suppose: $A = \{17, 19\}$, $B = \mathbb{W} \text{, where } A \subseteq B$. Clearly $A$ is a finite set that contains only two elements, and it is a subset of $B$. Thus, the proposition is false.
+
+\section{Problem 10b}
+$\mathbf{Q:}$ If $A \subseteq B $ and $A$ is denumerable, then $B$ is denumerable
+
+$\\ \textbf{Answer: } \textit{False}$. Suppose: $A=\mathbb{W}$ and $B=\mathbb{R}$, where clearly $A \subseteq B$ because $\mathbb{W} \subset \mathbb{R}$. Since $B$ contains the real numbers, it is uncountably infinite and thus not denumerable.
+
+\section{Problem 10c}
+$\mathbf{Q:}$ If $A$ and $B$ are denumerable, then the set $A - B$ is denumerable.
+
+$\\ \textbf{Answer: } \textit{False}$. Suppose: $A=\mathbb{W}$ and that $B = \mathbb{Q}$, so $A - B = \emptyset$. By definition the empty set ($\emptyset$) is finite, so it is not denumerable.
+
+\end{document}
+

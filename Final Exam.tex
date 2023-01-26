@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Final Exam Part 1 of 2}
+\author{Gerald Sufleta}
+\date{December 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem}
+Prove that a relation $\mathrel{R}$ on a set $A$ is asymmetric if and only if it is antisymmetric and irreflexive.
+
+\section{Solution}
+We will prove this by breaking out the biconditional into its component conditionals, namely:
+
+\[
+\text{Asymmetric} \implies (\text{Antisymmetric} \land \text{Irreflexive}) \tag{1}\label{implication-1}
+\]
+\[
+(\text{Antisymmetric} \land \text{Irreflexive}) \implies \text{Asymmetric} \tag{2}\label{implication-2}
+\]
+
+\subsection{Conditional 1}
+Here, we will prove $\eqref{implication-1}$ by assuming $\mathrel{R}$ is asymmetric, then showing it is antisymmetric and irreflexive.
+
+If $\mathrel{R}$ is asymmetric, then by definition:
+
+\[
+(\forall x,y \in A) (x \mathrel{R} y \implies y\not\mathrel{R} x) \tag{2.1.1}\label{asymmetric-def}
+\]
+
+This is logically equivalent to:
+\[
+(\forall x,y \in A)(x\not\mathrel{R} y \lor y \not\mathrel{R} x) \tag{2.1.2}\label{asymmetric-def-equiv}
+\]
+
+To show that this implies $R$ is irreflexive, let us assume for some $x,y \in A$ that $x = y$. Then $\eqref{asymmetric-def-equiv}$ reduces to:
+
+\[
+(x \not\mathrel{R} x \lor x \not\mathrel{R} x) \equiv x \not\mathrel{R} x 
+\]
+
+Thus, $R$ is irreflexive.
+
+Next, we show $R$ is antisymmetric. For a relation to be antisymmetric, the following conditional must be true:
+
+\[
+(\forall x,y \in A)(x \mathrel{R} y \land y \mathrel{R} x) \implies (x=y) \tag{2.1.3}\label{antisymmetric}
+\]
+
+However, according to $\eqref{asymmetric-def-equiv}$ which we assumed to be true, the antecedent of $\eqref{antisymmetric}$ can never be true since either ($x \not\mathrel{R} y$) or ($y \not\mathrel{R} x$) is true. As a result, the implication of $\eqref{antisymmetric}$ as a whole will always be true. Therefore, $R$ is antisymmetric.
+
+\subsection{Conditional 2}
+Next, we show that $\eqref{implication-2}$ is true. We will assume $R$ is both antisymmetric and irreflexive, and show that as a consequence \eqref{asymmetric-def} holds.
+
+Since $R$ is irreflexive, by definition we know:
+
+\[
+(\forall x \in A)(x \not\mathrel{R} x) \tag{2.2.1}\label{irreflexive-def}
+\]
+
+Further, since we assumed $R$ is antisymmetric we know \eqref{antisymmetric} holds in this case, too. It is helpful to re-write \eqref{antisymmetric} into the equivalent logical statement:
+\[
+(\forall x,y \in A)[(x=y) \lor x \not\mathrel{R} y \lor y \not\mathrel{R} x] \tag{2.2.2} \label{antisymmetric-expanded}
+\]
+
+Now, suppose for some $x,y \in A$ that $x = y$. This reduces $\eqref{asymmetric-def}$ to:
+\[
+(\forall x \in A) (x \mathrel{R} x \implies x \not\mathrel{R} x) \tag{2.2.3} \label{irreflexive-x=y}
+\]
+
+However, since we assumed $R$ is irreflexive, the antecedent of \eqref{irreflexive-x=y} is always false meaning the implication is always true. Therefore, when $x=y$, the relation $R$ is asymmetric.
+
+Next, suppose for some $x,y \in A$ that $x \neq y$. From our assumption in $\eqref{antisymmetric-expanded}$ combined with the fact that $x \neq y$, we know that at least one of ($x\not\mathrel{R}y) \text{ or } (y\not\mathrel{R}x$) is true. Consequently, in $\eqref{asymmetric-def}$ either the antecedent is false, the consequent is true, or both; thus, the implication is always true resulting in $R$ being asymmetric.
+
+Therefore, in both cases $R$ is asymmetric.
+
+\subsection{Conclusion}
+En summa, $R$ is asymmetric if and only if it is also irreflexive and antisymmetric.
+\end{document}
